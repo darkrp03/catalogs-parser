@@ -18,5 +18,5 @@ export async function downloadPdf(url) {
 
     writeStream.on('error', (err) => {
         console.log(err);
-    })
+    });
 }
