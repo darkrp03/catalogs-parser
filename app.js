@@ -37,10 +37,14 @@ async function getCatalogs() {
     return catalogs;
 }
 
-const catalogs = await getCatalogs();
+try {
+    const catalogs = await getCatalogs();
 
-await fs.promises.writeFile('catalogs.json', JSON.stringify(catalogs));
-
-for (const catalog of catalogs) {
-    await downloadPdf(catalog.link);
+    await fs.promises.writeFile('catalogs.json', JSON.stringify(catalogs));
+    
+    for (const catalog of catalogs) {
+        await downloadPdf(catalog.link);
+    }
+} catch (err) {
+    console.log(err);
 }
